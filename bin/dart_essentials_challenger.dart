@@ -4,4 +4,6 @@ void main() {
   Challenger challenger = Challenger();
 
   challenger.firstChallenger();
+  challenger.secondChallenger();
+  challenger.thirdChallenger();
 }

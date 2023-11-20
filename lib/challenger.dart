@@ -14,11 +14,11 @@ class Challenger {
 
   //! Based on the array above, create a report where:
   //! 1 - Present patients over 20 years old and print their names
-  //! 2 - Present the number of patients for each profession (developer, student, dentist, journalist)
+  //! 2 - Present the number of patients for each profession (Lawyer, student, Retiree, Engineer, Design)
   //! 3 - Present the number of patients who live in SP
 
+  // 1 - Present patients over 20 years old and print their names
   void firstChallenger() {
-    // 1 - Present patients over 20 years old and print their names
     for (var patient in patients) {
       final data = patient.toLowerCase().split("|");
       final age = data[1];
@@ -33,9 +33,39 @@ class Challenger {
         throw Exception();
       }
     }
+  }
 
-    // 2 - Present the number of patients for each profession
+  // 2 - Present the number of patients for each profession
+  void secondChallenger() {
+    List<String> professions = [];
+    List<String> noRepeatProfessions = [];
+    for (var patient in patients) {
+      final data = patient.toLowerCase().split("|");
+      professions.add(data[2]);
+    }
+    for (var noRepeatProfession in professions) {
+      if (!noRepeatProfessions.contains(noRepeatProfession)) {
+        noRepeatProfessions.add(noRepeatProfession);
+      }
+    }
+    for (var uniqueProfession in noRepeatProfessions) {
+      int count = professions
+          .where((profession) => profession == uniqueProfession)
+          .length;
 
-    // 3 - Present the number of patients who live in SP
+      print(
+          "There ${count == 1 ? 'is' : 'are'} $count patient${count == 1 ? '' : 's'} with profession $uniqueProfession");
+    }
+  }
+  // 3 - Present the number of patients who live in SP
+
+  void thirdChallenger() {
+    List<String> state = [];
+    for (var patient in patients) {
+      final data = patient.toLowerCase().split("|");
+      state.add(data[3]);
+    }
+    int count = state.where((element) => element == "sp").length;
+    print("There are $count patients living in SP");
   }
 }
